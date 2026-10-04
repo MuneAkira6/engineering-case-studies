@@ -1,0 +1,9 @@
+{
+  "name": "engineering-case-studies",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "check": "node tools/check.ts"
+  }
+}
