@@ -19,8 +19,8 @@
 | 03 | [CI と開発体験](03-ci-and-developer-experience.md) | self-hosted runner の PR コンパイルチェック、非決定的な失敗の切り分け、devcontainer、OSS ライセンス一覧 | [ci-devex-toolkit](https://github.com/MuneAkira6/ci-devex-toolkit) |
 | 04 | [無人で goal を回す：長命バス方式の設計と教訓](04-unattended-goal-bus.md) | AI エージェントの長い作業を、人が張り付かずに進める方式 | [goal-bus-kit](https://github.com/MuneAkira6/goal-bus-kit) |
 | 05 | [仕様駆動開発（SDD）の実践](05-spec-driven-development.md) | spec-kit の調整、判定の語彙、実測優先、契約の凍結 | [spec-driven-dev-playbook](https://github.com/MuneAkira6/spec-driven-dev-playbook) |
-| 06 | [日々の開発での AI 活用](06-ai-in-daily-engineering.md) | スキルと評価、朝会ダイジェスト、ローカル LLM、チームへの展開 | 公開準備中 |
-| 07 | [その他の成果](07-other-work.md) | N+1 の解消、スレッド枯渇によるデッドロック、ビルドツールの移行 | 公開準備中 |
+| 06 | [日々の開発での AI 活用](06-ai-in-daily-engineering.md) | スキルと評価、朝会ダイジェスト、ローカル LLM、チームへの展開 | [agent-skills-with-evals](https://github.com/MuneAkira6/agent-skills-with-evals) |
+| 07 | [その他の成果](07-other-work.md) | N+1 の解消、スレッド枯渇によるデッドロック、ビルドツールの移行 | [labs](https://github.com/MuneAkira6/labs) |
 
 01〜06 は 2,000〜4,000 字程度、07 は小さな 3 件をまとめた短い事例です。
 
@@ -85,7 +85,6 @@ check: 28 links in 9 files, 0 problems
   該当する表には、そのことを書いています。
 - 実務の数字は、記録を取った日のものです（たとえば判断の台帳 143 件は 2026-09-29 時点）。その後の作業で
   増えているものもあります。
-- 事例 06 と 07 の関連リポジトリは公開の準備中です。
 - 固有名詞を伏せているため、文脈が追いにくいところがあります。
 
 ## 作り方

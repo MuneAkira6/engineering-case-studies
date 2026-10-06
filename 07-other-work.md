@@ -1,6 +1,6 @@
 # その他の成果：N+1 の解消、スレッド枯渇によるデッドロック、ビルドツールの移行
 
-> **English summary** — Three smaller pieces. Collapsing an N+1 in report exports (DB requests per export 2,055 → 16 at 1,000 users, with byte-identical CSVs); finding and fixing a deadlock caused by blocking waits on a 3-thread pool; and moving a webpack + Babel admin frontend to Rsbuild. Reproducible labs for all three are being prepared in a separate repository; every number there will come from the lab itself.
+> **English summary** — Three smaller pieces. Collapsing an N+1 in report exports (DB requests per export 2,055 → 16 at 1,000 users, with byte-identical CSVs); finding and fixing a deadlock caused by blocking waits on a 3-thread pool; and moving a webpack + Babel admin frontend to Rsbuild. Reproducible labs for all three are in a separate repository, labs, where every number comes from the lab itself.
 
 ## 概要
 
@@ -65,4 +65,10 @@
 
 ## 関連リポジトリ
 
-- labs（公開準備中）：A（N+1 → 一括読み出し、金型とのバイト一致）、B（スレッド枯渇の三条件の対照実験と修正版）、C（webpack と Rsbuild のビルド計測）を再現する実験。数字はすべて実験そのものの実測にします
+- [labs](https://github.com/MuneAkira6/labs)：A（N+1 → 一括読み出し、金型とのバイト一致）、B（スレッド枯渇の三条件の対照実験と修正版）、C（webpack と Rsbuild のビルド計測）を再現する実験。数字はすべて実験そのものの実測です
+
+デモの実測値です（デモのリポジトリで測ったもので、実務の数字ではありません）。
+
+- A：40 グループ・1,000 名の合成データで、1 回の出力あたりの要求は、素朴な実装が `find` 1,041 回、一括の実装が `find` 2 回と `aggregate` 1 回でした。4 種類のレポートの出力は、凍結した金型と 2 つの規模でバイト単位で一致しています（Linux ホストと Windows の両方）。
+- B：3 スレッドの専用プールの上で、処理が同じプールの処理を無期限に待つと、48 件の要求に 1 件も応答しなくなりました。既定の共有プールは補償のスレッドで凍らず、補償を禁じると再び凍り、Future の合成に書き換えると、プールの大きさを変えないまま 48 件すべてに応答しました。どの対照でも、プールに触れない `/health` は 200 を返し続けています。
+- C：1,000 モジュールの React アプリの冷えた本番ビルドは、webpack + Babel が中央値 4,296 ms、Rsbuild が 359 ms でした（Linux ホスト、各 5 回）。開発サーバーの起動は 2,522 ms と 434 ms です。
